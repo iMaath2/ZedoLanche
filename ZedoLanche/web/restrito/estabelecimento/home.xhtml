@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Home do Estabelecimento</title>
+</h:head>
+<h:body>
+    <h:form>
+        <p:menubar>
+            <p:menuitem value="Home" url="home.xhtml"/>
+            <p:menuitem value="Meu Perfil" url="perfil.xhtml"/>
+            <p:menuitem value="Sair" action="#{loginBean.logout()}" icon="ui-icon-extlink"/>
+        </p:menubar>
+    </h:form>
+    <br/>
+    <h1>Bem-vindo, Estabelecimento #{loginBean.estabelecimentoLogado.nome}!</h1>
+    <p>Esta é sua área restrita de gerenciamento.</p>
+</h:body>
+</html>

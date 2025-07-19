@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+<h:head>
+    <title>Registro de Estabelecimento - ZedoLanche</title>
+</h:head>
+<h:body style="padding-top: 50px;">
+    <b:container>
+        <b:row>
+            <b:column span="6" offset="3">
+                <h:form>
+                    <b:panel title="Registrar Novo Estabelecimento" look="info">
+                        <p:messages showDetail="true" closable="true" autoUpdate="true"/>
+                        
+                        <p:panelGrid columns="2">
+                            <p:outputLabel for="nome" value="Nome do Estabelecimento:"/>
+                            <p:inputText id="nome" value="#{registroEstabelecimentoBean.novoEstabelecimento.nome}" required="true"/>
+                            
+                            <p:outputLabel for="email" value="Email de Contato:"/>
+                            <p:inputText id="email" value="#{registroEstabelecimentoBean.novoEstabelecimento.email}" required="true"/>
+                            
+                            <p:outputLabel for="senha" value="Senha:"/>
+                            <p:password id="senha" value="#{registroEstabelecimentoBean.novoEstabelecimento.senha}" required="true"/>
+                            
+                            <p:outputLabel for="whatsapp" value="WhatsApp:"/>
+                            <p:inputText id="whatsapp" value="#{registroEstabelecimentoBean.novoEstabelecimento.whatsapp}"/>
+                            
+                            <p:outputLabel for="endereco" value="Endereço:"/>
+                            <p:inputText id="endereco" value="#{registroEstabelecimentoBean.novoEstabelecimento.endereco}"/>
+                            
+                            <p:outputLabel for="descricao" value="Descrição:"/>
+                            <p:inputTextarea id="descricao" value="#{registroEstabelecimentoBean.novoEstabelecimento.descricao}"/>
+                        </p:panelGrid>
+                        <br/>
+                        
+                        <b:commandButton value="Confirmar Registro" action="#{registroEstabelecimentoBean.registrar()}" look="success" />
+                        <b:button value="Voltar para Login" outcome="login.xhtml" look="default" style="margin-left: 10px;"/>
+                    </b:panel>
+                </h:form>
+            </b:column>
+        </b:row>
+    </b:container>
+</h:body>
+</html>

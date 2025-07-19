@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/Administrator/Downloads/ZedoLanche/ZedoLanche/web/acompanhamento.xhtml</file>
+            <file>file:/C:/Users/Administrator/Downloads/ZedoLanche/ZedoLanche/web/restrito/cliente/home.xhtml</file>
+            <file>file:/C:/Users/Administrator/Downloads/ZedoLanche/ZedoLanche/src/java/com/devcaotics/controllers/AlimentoBean.java</file>
+            <file>file:/C:/Users/Administrator/Downloads/ZedoLanche/ZedoLanche/src/java/com/devcaotics/controllers/ClienteBean.java</file>
+            <file>file:/C:/Users/Administrator/Downloads/ZedoLanche/ZedoLanche/web/restrito/estabelecimento/home.xhtml</file>
+            <file>file:/C:/Users/Administrator/Downloads/ZedoLanche/ZedoLanche/src/java/com/devcaotics/model/entidades/Alimento.java</file>
+            <file>file:/C:/Users/Administrator/Downloads/ZedoLanche/ZedoLanche/web/restrito/estabelecimento/perfil.xhtml</file>
+            <file>file:/C:/Users/Administrator/Downloads/ZedoLanche/ZedoLanche/src/java/com/devcaotics/controllers/LoginBean.java</file>
+            <file>file:/C:/Users/Administrator/Downloads/ZedoLanche/ZedoLanche/web/welcomePrimefaces.xhtml</file>
+            <file>file:/C:/Users/Administrator/Downloads/ZedoLanche/ZedoLanche/web/index.xhtml</file>
+            <file>file:/C:/Users/Administrator/Downloads/ZedoLanche/ZedoLanche/src/java/com/devcaotics/model/entidades/Estabelecimento.java</file>
+            <file>file:/C:/Users/Administrator/Downloads/ZedoLanche/ZedoLanche/src/java/com/devcaotics/controllers/PerfilEstabelecimentoBean.java</file>
+            <file>file:/C:/Users/Administrator/Downloads/ZedoLanche/ZedoLanche/web/registrar-cliente.xhtml</file>
+            <file>file:/C:/Users/Administrator/Downloads/ZedoLanche/ZedoLanche/src/java/com/devcaotics/model/entidades/Acompanhamento.java</file>
+            <file>file:/C:/Users/Administrator/Downloads/ZedoLanche/ZedoLanche/src/java/com/devcaotics/controllers/ControleAcessoFilter.java</file>
+            <file>file:/C:/Users/Administrator/Downloads/ZedoLanche/ZedoLanche/web/registrar-estabelecimento.xhtml</file>
+            <file>file:/C:/Users/Administrator/Downloads/ZedoLanche/ZedoLanche/web/cliente.xhtml</file>
+            <file>file:/C:/Users/Administrator/Downloads/ZedoLanche/ZedoLanche/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/Administrator/Downloads/ZedoLanche/ZedoLanche/src/java/com/devcaotics/model/persistenceManager/ManagerDao.java</file>
+            <file>file:/C:/Users/Administrator/Downloads/ZedoLanche/ZedoLanche/web/alimento.xhtml</file>
+            <file>file:/C:/Users/Administrator/Downloads/ZedoLanche/ZedoLanche/web/home.xhtml</file>
+            <file>file:/C:/Users/Administrator/Downloads/ZedoLanche/ZedoLanche/src/java/com/devcaotics/model/entidades/Cliente.java</file>
+            <file>file:/C:/Users/Administrator/Downloads/ZedoLanche/ZedoLanche/src/java/com/devcaotics/model/entidades/Pedido.java</file>
+            <file>file:/C:/Users/Administrator/Downloads/ZedoLanche/ZedoLanche/src/java/com/devcaotics/controllers/PerfilBean.java</file>
+            <file>file:/C:/Users/Administrator/Downloads/ZedoLanche/ZedoLanche/web/restrito/cliente/perfil.xhtml</file>
+            <file>file:/C:/Users/Administrator/Downloads/ZedoLanche/ZedoLanche/src/java/com/devcaotics/controllers/AcompanhamentoBean.java</file>
+            <file>file:/C:/Users/Administrator/Downloads/ZedoLanche/ZedoLanche/src/java/com/devcaotics/model/entidades/ItemPedido.java</file>
+            <file>file:/C:/Users/Administrator/Downloads/ZedoLanche/ZedoLanche/src/conf/persistence.xml</file>
+            <file>file:/C:/Users/Administrator/Downloads/ZedoLanche/ZedoLanche/web/login.xhtml</file>
+            <file>file:/C:/Users/Administrator/Downloads/ZedoLanche/ZedoLanche/src/java/com/devcaotics/controllers/RegistroEstabelecimentoBean.java</file>
+            <file>file:/C:/Users/Administrator/Downloads/ZedoLanche/ZedoLanche/src/java/com/devcaotics/controllers/RegistroClienteBean.java</file>
+        </group>
+    </open-files>
+</project-private>
