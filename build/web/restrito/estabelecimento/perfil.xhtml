@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+    <title>Perfil do Estabelecimento</title>
+</h:head>
+<h:body>
+    <h:form>
+        <ui:include src="/WEB-INF/templates/menu-estabelecimento.xhtml" />
+    </h:form>
+    <br/>
+    <h1>Perfil do Estabelecimento</h1>
+    <p:messages showDetail="true" closable="true" autoUpdate="true"/>
+    
+    <h:form>
+        <p:panel header="Alterar Dados Cadastrais">
+            <p:panelGrid columns="2">
+                <p:outputLabel for="nome" value="Nome:"/>
+                <p:inputText id="nome" value="#{perfilEstabelecimentoBean.estabelecimento.nome}"/>
+                <p:outputLabel for="email" value="Email:"/>
+                <p:inputText id="email" value="#{perfilEstabelecimentoBean.estabelecimento.email}"/>
+                <p:outputLabel for="whatsapp" value="WhatsApp:"/>
+                <p:inputText id="whatsapp" value="#{perfilEstabelecimentoBean.estabelecimento.whatsapp}"/>
+                <p:outputLabel for="endereco" value="Endereço:"/>
+                <p:inputText id="endereco" value="#{perfilEstabelecimentoBean.estabelecimento.endereco}"/>
+                <p:outputLabel for="instagram" value="Instagram:"/>
+                <p:inputText id="instagram" value="#{perfilEstabelecimentoBean.estabelecimento.instagram}"/>
+                 <p:outputLabel for="urlFoto" value="URL da Foto:"/>
+                <p:inputText id="urlFoto" value="#{perfilEstabelecimentoBean.estabelecimento.urlFoto}"/>
+                <p:outputLabel for="descricao" value="Descrição:"/>
+                <p:inputTextarea id="descricao" value="#{perfilEstabelecimentoBean.estabelecimento.descricao}"/>
+            </p:panelGrid>
+            <p:commandButton value="Salvar Alterações" action="#{perfilEstabelecimentoBean.alterarDados()}"/>
+        </p:panel>
+    </h:form>
+    
+    <br/>
+    
+    <h:form>
+        <p:panel header="Alterar Senha">
+            <p:panelGrid columns="2">
+                <p:outputLabel for="senhaAntiga" value="Senha Antiga:"/>
+                <p:password id="senhaAntiga" value="#{perfilEstabelecimentoBean.senhaAntiga}" required="true"/>
+                <p:outputLabel for="novaSenha" value="Nova Senha:"/>
+                <p:password id="novaSenha" value="#{perfilEstabelecimentoBean.novaSenha}" required="true"/>
+                <p:outputLabel for="confirma" value="Confirme a Nova Senha:"/>
+                <p:password id="confirma" value="#{perfilEstabelecimentoBean.confirmaNovaSenha}" required="true"/>
+            </p:panelGrid>
+            <p:commandButton value="Alterar Senha" action="#{perfilEstabelecimentoBean.alterarSenha()}"/>
+        </p:panel>
+    </h:form>
+</h:body>
+</html>

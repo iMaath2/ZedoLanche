@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+    <title>Gerenciar Acompanhamentos</title>
+</h:head>
+<h:body>
+    <ui:include src="/WEB-INF/templates/menu-estabelecimento.xhtml" />
+    <b:container>
+        <h1>Gestão de Acompanhamentos (Cardápio Geral)</h1>
+        <p>Aqui você cadastra os acompanhamentos que estarão disponíveis para adicionar ao seu cardápio.</p>
+        <p:messages id="messages" showDetail="true" closable="true" autoUpdate="true" />
+        
+        <h:form id="formCadastro">
+            <p:panel header="Formulário">
+                <p:panelGrid columns="2">
+                    <p:outputLabel for="nome" value="Nome:"/>
+                    <p:inputText id="nome" value="#{acompBean.acompanhamento.nome}" required="true"/>
+                    <p:outputLabel for="preco" value="Preço Adicional:"/>
+                    <p:inputText id="preco" value="#{acompBean.acompanhamento.precoAdicional}"/>
+                    <p:outputLabel for="descricao" value="Descrição:"/>
+                    <p:inputTextarea id="descricao" value="#{acompBean.acompanhamento.descricao}"/>
+                    <p:outputLabel for="ativo" value="Ativo:"/>
+                    <p:selectBooleanCheckbox id="ativo" value="#{acompBean.acompanhamento.ativo}"/>
+                </p:panelGrid>
+                <p:commandButton value="Salvar" action="#{acompBean.salvar()}" update=":formTabela :formCadastro"/>
+                <p:commandButton value="Limpar" action="#{acompBean.init()}" update="@form"/>
+            </p:panel>
+        </h:form>
+        <br/>
+        <h:form id="formTabela">
+            <p:dataTable value="#{acompBean.acompanhamentos}" var="acomp" paginator="true" rows="5" emptyMessage="Nenhum acompanhamento cadastrado.">
+                <p:column headerText="Nome"><h:outputText value="#{acomp.nome}"/></p:column>
+                <p:column headerText="Preço Adicional"><h:outputText value="#{acomp.precoAdicional}"/></p:column>
+                <p:column headerText="Ações">
+                    <p:commandButton value="Editar" action="#{acompBean.setAcompanhamento(acomp)}" update=":formCadastro"/>
+                    <p:commandButton value="Remover" oncomplete="PF('dlgConfirmarExclusao').show()">
+                        <f:setPropertyActionListener xmlns:f="http://xmlns.jcp.org/jsf/core" value="#{acomp}" target="#{acompBean.acompanhamento}"/>
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+
+        <p:confirmDialog widgetVar="dlgConfirmarExclusao" message="Tem certeza?">
+            <h:form>
+                <p:commandButton value="Sim" action="#{acompBean.remover()}" update=":formTabela" oncomplete="PF('dlgConfirmarExclusao').hide()"/>
+                <p:commandButton value="Não" type="button" onclick="PF('dlgConfirmarExclusao').hide()"/>
+            </h:form>
+        </p:confirmDialog>
+    </b:container>
+</h:body>
+</html>

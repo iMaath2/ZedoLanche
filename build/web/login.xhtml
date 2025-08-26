@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+<h:head>
+    <title>Login - ZedoLanche</title>
+</h:head>
+<h:body style="padding-top: 50px; background-color: #f5f5f5;">
+    <b:container>
+        <b:row>
+            <b:column span="4" offset="4">
+                <h:form>
+                    <b:panel title="Acessar o Sistema" look="primary">                       
+                        <p:messages id="messages" showDetail="true" closable="true" autoUpdate="true"/>                       
+                        <div style="margin-bottom: 15px;">
+                            <p:outputLabel for="email" value="Email:"/>
+                            <p:inputText id="email" value="#{loginBean.email}" style="width: 100%;" 
+                                         required="true" requiredMessage="O campo Email é obrigatório."/>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <p:outputLabel for="senha" value="Senha:"/>
+                            <p:password id="senha" value="#{loginBean.senha}" style="width: 100%;"
+                                        required="true" requiredMessage="O campo Senha é obrigatório."/>
+                        </div>
+                        <b:commandButton value="Entrar" action="#{loginBean.login()}" 
+                                         style="width: 100%;" look="primary" update="@form"/>
+                        
+                        <hr/>
+                        <div style="text-align: center; margin-top: 10px;">
+                            <h:outputText value="Não tem uma conta?"/>
+                        </div>
+
+                        <p:panelGrid columns="2" style="width: 100%; border-style: none !important; margin-top: 10px;">
+                            <p:button value="Registrar como Cliente" 
+                                      outcome="registrar-cliente.xhtml" 
+                                      style="width: 100%;"/>
+                            
+                            <p:button value="Registrar como Estabelecimento" 
+                                      outcome="registrar-estabelecimento.xhtml" 
+                                      style="width: 100%;"/>
+                        </p:panelGrid>
+
+                    </b:panel>
+                </h:form>
+            </b:column>
+        </b:row>
+    </b:container>
+</h:body>
+</html>

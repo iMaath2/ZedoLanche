@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Fazer Pedido</title>
+</h:head>
+<h:body>
+    <ui:include src="/WEB-INF/templates/menu-cliente.xhtml" />
+    <b:container>
+        <h1>Fazer um Pedido</h1>
+        <p:messages autoUpdate="true" closable="true"/>
+        
+
+        <h:form id="formBusca">
+            <p:panel header="1. Buscar Estabelecimento">
+                <p:inputText value="#{fazerPedidoBean.termoBusca}" placeholder="Digite o nome do estabelecimento"/>
+                <p:commandButton value="Buscar" action="#{fazerPedidoBean.buscarEstabelecimentos()}" update="formBusca:tabelaEstabelecimentos"/>
+                
+                <p:dataTable id="tabelaEstabelecimentos" value="#{fazerPedidoBean.estabelecimentosEncontrados}" var="est" style="margin-top: 10px;">
+                    <p:column headerText="Nome">#{est.nome}</p:column>
+                    <p:column headerText="Endereço">#{est.endereco}</p:column>
+                    <p:column>
+                        <p:commandButton value="Selecionar" action="#{fazerPedidoBean.selecionarEstabelecimento(est)}" 
+                                         update=":formCardapio :formCarrinho"/>
+                    </p:column>
+                </p:dataTable>
+            </p:panel>
+        </h:form>
+
+        <h:form id="formCardapio">
+            <p:panel header="2. Escolher o Lanche" rendered="#{fazerPedidoBean.estabelecimentoSelecionado != null}">
+                <h2>Cardápio de #{fazerPedidoBean.estabelecimentoSelecionado.nome}</h2>
+                <p:dataTable value="#{fazerPedidoBean.estabelecimentoSelecionado.lanches}" var="lanche">
+                    <p:column headerText="Lanche">#{lanche.nome}</p:column>
+                    <p:column headerText="Preço">R$ #{lanche.preco}</p:column>
+                    <p:column>
+                        <p:commandButton value="Adicionar ao Carrinho" action="#{fazerPedidoBean.prepararAdicionarLanche(lanche)}" 
+                                         oncomplete="PF('dlgAcompanhamentos').show()" update=":formDialogAcomp"/>
+                    </p:column>
+                </p:dataTable>
+            </p:panel>
+        </h:form>
+
+        <h:form id="formCarrinho">
+            <p:panel header="3. Seu Carrinho" style="margin-top:20px;">
+                <p:dataTable value="#{fazerPedidoBean.carrinho.itens}" var="item" emptyMessage="Seu carrinho está vazio.">
+                    <p:column headerText="Lanche">#{item.alimento.nome}</p:column>
+                </p:dataTable>
+                <br/>
+                <h3 style="text-align: right;">Total: 
+                    <h:outputText value="#{fazerPedidoBean.carrinho.preco()}">
+                        <f:convertNumber type="currency" currencySymbol="R$ "/>
+                    </h:outputText>
+                </h3>
+                <b:commandButton value="Finalizar Pedido" action="#{fazerPedidoBean.finalizarPedido()}" 
+                                 rendered="#{not empty fazerPedidoBean.carrinho.itens}" style="width:100%;"
+                                 look="success"/>
+            </p:panel>
+        </h:form>
+
+
+        <p:dialog header="Adicionar Acompanhamentos" widgetVar="dlgAcompanhamentos" modal="true" width="500">
+            <h:form id="formDialogAcomp">
+                <h3>Lanche: #{fazerPedidoBean.lancheAtual.nome}</h3>
+                
+                <p:selectManyCheckbox id="acomps" value="#{fazerPedidoBean.acompanhamentosSelecionados}" layout="grid" columns="2">
+                    <f:selectItems value="#{fazerPedidoBean.estabelecimentoSelecionado.acompanhamento}" var="acomp" 
+                                   itemLabel="#{acomp.nome} (+ R$ #{acomp.precoAdicional})" itemValue="#{acomp}"/>
+                </p:selectManyCheckbox>
+                
+                <br/>
+                <p:commandButton value="Confirmar" 
+                                 actionListener="#{fazerPedidoBean.adicionarLancheAoCarrinho()}" 
+                                 oncomplete="PF('dlgAcompanhamentos').hide()" 
+                                 update=":formCarrinho"/> 
+            </h:form>
+        </p:dialog>
+    </b:container>
+</h:body>
+</html>

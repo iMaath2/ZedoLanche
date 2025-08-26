@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Cadastro de Alimentos</title>
+</h:head>
+<h:body>
+    <h1>Gestão de Alimentos</h1>
+    <p:messages id="messages" showDetail="true" closable="true" autoUpdate="true" />
+    <h:form id="formCadastro">
+        <p:panel header="Formulário">
+            <p:panelGrid columns="2">
+                <p:outputLabel for="nome" value="Nome:"/>
+                <p:inputText id="nome" value="#{alimentoBean.alimento.nome}" required="true"/>
+                <p:outputLabel for="preco" value="Preço:"/>
+                <p:inputText id="preco" value="#{alimentoBean.alimento.preco}"/>
+                <p:outputLabel for="descricao" value="Descrição:"/>
+                <p:inputTextarea id="descricao" value="#{alimentoBean.alimento.descricao}"/>
+                <p:outputLabel for="urlFoto" value="URL da Foto:"/>
+                <p:inputText id="urlFoto" value="#{alimentoBean.alimento.urlFoto}"/>
+                <p:outputLabel for="alergenicos" value="Alergênicos:"/>
+                <p:inputText id="alergenicos" value="#{alimentoBean.alimento.alergenicos}"/>
+                <p:outputLabel for="ativo" value="Ativo:"/>
+                <p:selectBooleanCheckbox id="ativo" value="#{alimentoBean.alimento.ativo}"/>
+                <p:outputLabel for="bebida" value="É uma bebida?"/>
+                <p:selectBooleanCheckbox id="bebida" value="#{alimentoBean.alimento.bebida}"/>
+            </p:panelGrid>
+            <p:commandButton value="Salvar" action="#{alimentoBean.salvar()}" update=":formTabela :formCadastro"/>
+            <p:commandButton value="Limpar" action="#{alimentoBean.init()}" update="@form"/>
+        </p:panel>
+    </h:form>
+    <br/>
+    <h:form id="formTabela">
+        <p:dataTable value="#{alimentoBean.alimentos}" var="alim" paginator="true" rows="5" emptyMessage="Nenhum alimento cadastrado.">
+            <p:column headerText="Nome"><h:outputText value="#{alim.nome}"/></p:column>
+            <p:column headerText="Preço"><h:outputText value="#{alim.preco}"><f:convertNumber type="currency" currencySymbol="R$"/></h:outputText></p:column>
+            <p:column headerText="Bebida?"><h:outputText value="#{alim.bebida ? 'Sim' : 'Não'}"/></p:column>
+            <p:column headerText="Ações">
+                <p:commandButton value="Editar" action="#{alimentoBean.setAlimento(alim)}" update=":formCadastro"/>
+                <p:commandButton value="Remover" oncomplete="PF('dlgConfirmarExclusao').show()">
+                    <f:setPropertyActionListener value="#{alim}" target="#{alimentoBean.alimento}"/>
+                </p:commandButton>
+            </p:column>
+        </p:dataTable>
+    </h:form>
+    <p:confirmDialog widgetVar="dlgConfirmarExclusao" message="Tem certeza?">
+        <h:form>
+            <p:commandButton value="Sim" action="#{alimentoBean.remover()}" update=":formTabela" oncomplete="PF('dlgConfirmarExclusao').hide()"/>
+            <p:commandButton value="Não" type="button" onclick="PF('dlgConfirmarExclusao').hide()"/>
+        </h:form>
+    </p:confirmDialog>
+</h:body>
+</html>

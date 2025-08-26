@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Cadastro de Clientes</title>
+</h:head>
+<h:body>
+    <h1>Gestão de Clientes</h1>
+    <p:messages id="messages" showDetail="true" closable="true" autoUpdate="true" />
+    <h:form id="formCadastro">
+        <p:panel header="Formulário">
+            <p:panelGrid columns="2">
+                <p:outputLabel for="nome" value="Nome:"/>
+                <p:inputText id="nome" value="#{clienteBean.cliente.nome}" required="true"/>
+                <p:outputLabel for="endereco" value="Endereço:"/>
+                <p:inputText id="endereco" value="#{clienteBean.cliente.endereco}"/>
+                <p:outputLabel for="whatsapp" value="WhatsApp:"/>
+                <p:inputText id="whatsapp" value="#{clienteBean.cliente.whatsapp}"/>
+                <p:outputLabel for="email" value="Email:"/>
+                <p:inputText id="email" value="#{clienteBean.cliente.email}"/>
+                <p:outputLabel for="senha" value="Senha:"/>
+                <p:password id="senha" value="#{clienteBean.cliente.senha}"/>
+            </p:panelGrid>
+            <p:commandButton value="Salvar" action="#{clienteBean.salvar()}" update=":formTabela :formCadastro"/>
+            <p:commandButton value="Limpar" action="#{clienteBean.init()}" update="@form" process="@this"/>
+        </p:panel>
+    </h:form>
+    <br/>
+    <h:form id="formTabela">
+        <p:dataTable value="#{clienteBean.clientes}" var="cli" paginator="true" rows="5" emptyMessage="Nenhum cliente cadastrado.">
+            <p:column headerText="Nome"><h:outputText value="#{cli.nome}"/></p:column>
+            <p:column headerText="WhatsApp"><h:outputText value="#{cli.whatsapp}"/></p:column>
+            <p:column headerText="Email"><h:outputText value="#{cli.email}"/></p:column>
+            <p:column headerText="Ações">
+                <p:commandButton value="Editar" action="#{clienteBean.setCliente(cli)}" update=":formCadastro"/>
+                <p:commandButton value="Remover" oncomplete="PF('dlgConfirmarExclusao').show()">
+                    <f:setPropertyActionListener value="#{cli}" target="#{clienteBean.cliente}"/>
+                </p:commandButton>
+            </p:column>
+        </p:dataTable>
+    </h:form>
+    <p:confirmDialog widgetVar="dlgConfirmarExclusao" message="Tem certeza?">
+        <h:form>
+            <p:commandButton value="Sim" action="#{clienteBean.remover()}" update=":formTabela" oncomplete="PF('dlgConfirmarExclusao').hide()"/>
+            <p:commandButton value="Não" type="button" onclick="PF('dlgConfirmarExclusao').hide()"/>
+        </h:form>
+    </p:confirmDialog>
+</h:body>
+</html>
